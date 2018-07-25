@@ -1,0 +1,62 @@
+<!-- <div class="row" style="margin-top:20px; padding:75px; background-color:#eff0f2;border-radius:15px;
+-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
+  
+  .fa-youtube {
+    background: #bb0000;
+    color: white;
+  }
+</style>
+<!-- <h2 class="page-header">Login</h2> -->
+
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<!-- Login Form -->
+<form [formGroup]="form" (submit)="onLoginSubmit()">
+
+  <!-- Username Field -->
+  <div class="form-group">
+    <label for="username">Username</label>
+    <div [ngClass]="{'has-error': form.controls.username.errors && form.controls.username.dirty, 'has-success': form.controls.username.valid && form.controls.username.dirty }">
+      <input class="form-control" type="text" name="username" formControlName="username" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Password Field  -->
+  <div class="form-group">
+    <label for="password">Password</label>
+    <div [ngClass]="{'has-error': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }">
+      <input class="form-control" type="password" name="password" formControlName="password" />
+      <!-- Validation -->
+      <ul class="help-block">
+        <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required.</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Submit Button -->
+  <input [disabled]="!form.valid || processing" class="btn btn-primary" type="submit" value="Login" />&nbsp;
+  <a href="https://www.facebook.com/RealTycoon/"><button type="button" class="fa fa-facebook" ></button></a>&nbsp;
+  <a href="https://twitter.com/Real_Tycoon"><button type="button" class="fa fa-twitter" ></button></a>&nbsp;
+  <a href="https://www.youtube.com/channel/UC38tSvlz-I6-a8ZN-XpFTeg"><button type="button" class="fa fa-youtube" ></button></a>
+</form>

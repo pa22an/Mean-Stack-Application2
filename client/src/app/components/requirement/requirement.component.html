@@ -1,0 +1,312 @@
+<h1 class="page-header">Requirement Page</h1>
+
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<!-- Requirement Form -->
+<form [formGroup]="form" (submit)="onRequirementSubmit()">
+
+	<!--  Name Input -->
+	  <div class="form-group">
+	    <label for=" name">Name</label>
+	    <div [ngClass]="{'has-error': (form.controls. name.errors && form.controls. name.dirty), 'has-success': !form.controls. name.errors}">
+	      <input type="text" name=" name" class="form-control" autocomplete="off" placeholder="* Name" formControlName=" name" />
+	      <!-- Validation -->
+	      <ul class="help-block">
+	        <li *ngIf="form.controls. name.errors?.required && form.controls. name.dirty">This field is required</li>
+	        <li *ngIf=" nameMessage">{{  nameMessage }}</li>
+	      </ul>
+	    </div>
+	  </div>
+
+	  <!--  Location Input -->
+	  <div class="form-group">
+	    <label for=" location">Location</label>
+	    <div [ngClass]="{'has-error': (form.controls. location.errors && form.controls. location.dirty) , 'has-success': !form.controls. location.errors}">
+	      <input type="text" value="Chennai" name=" Location" class="form-control" autocomplete="off" placeholder="* Location" formControlName=" location" disabled />
+	      <!-- Validation -->
+	      <ul class="help-block">
+	        <li *ngIf="form.controls. location.errors?.required && form.controls. location.dirty">This field is required</li>
+	        <li *ngIf=" locationMessage">{{  locationMessage }}</li>
+	      </ul>
+	    </div>
+    </div>
+
+    <!--  City Input -->
+	  <div class="form-group">
+        <label for=" city">City</label>
+        <div [ngClass]="{'has-error': (form.controls. city.errors && form.controls. city.dirty) , 'has-success': !form.controls. city.errors}">
+          <!-- <select id="city" name="city">
+            <option disabled selected>--Choose City--</option>
+            <option>Tambaram</option>
+            <option>Gundy</option>
+            <option>Kelambakam</option>
+            <option>T Nagar</option> -->
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. city.errors?.required && form.controls. city.dirty">This field is required</li>
+            <li *ngIf=" cityMessage">{{  cityMessage }}</li>
+          </ul>
+        </div>
+      </div>
+    
+    <!--  Gender Input -->
+	  <div class="form-group">
+        <label for=" gender">Gender</label>
+        <div [ngClass]="{'has-error': (form.controls. gender.errors && form.controls. gender.dirty) , 'has-success': !form.controls. gender.errors}">
+          <label>
+            <input type="radio" name=" male" class="form-control" autocomplete="off" placeholder="* male" formControlName=" male"   />Male
+          </label>
+          <label>
+            <input type="radio" name=" female" class="form-control" autocomplete="off" placeholder="* female" formControlName=" female"   />Female
+          </label>	      
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. gender.errors?.required && form.controls. gender.dirty">This field is required</li>
+            <li *ngIf=" genderMessage">{{  genderMessage }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <!--  Job Input -->
+	  <div class="form-group">
+        <label for=" job">Job</label>
+        <div [ngClass]="{'has-error': (form.controls. job.errors && form.controls. job.dirty) , 'has-success': !form.controls. job.errors}">
+          <input type="text" name=" job" class="form-control" autocomplete="off" placeholder="* Job" formControlName=" job"  />
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. job.errors?.required && form.controls. job.dirty">This field is required</li>
+            <li *ngIf=" jobMessage">{{  jobMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  Marital Input -->
+      <div class="form-group">
+        <label for=" marital">Marital</label>
+        <div [ngClass]="{'has-error': (form.controls. marital.errors && form.controls. marital.dirty) , 'has-success': !form.controls. marital.errors}">
+          <input type="text" name=" marital" class="form-control" autocomplete="off" placeholder="* Marital" formControlName=" marital"  />
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. marital.errors?.required && form.controls. marital.dirty">This field is required</li>
+            <li *ngIf=" maritalMessage">{{  maritalMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  Members Input -->
+      <div class="form-group">
+        <label for=" members">Members</label>
+        <div [ngClass]="{'has-error': (form.controls. members.errors && form.controls. members.dirty) , 'has-success': !form.controls. members.errors }">
+          <input type="text" name=" members" class="form-control" autocomplete="off" placeholder="* Members" formControlName=" members"  />
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. members.errors?.required && form.controls. members.dirty">This field is required</li>
+            <li *ngIf=" membersMessage">{{  membersMessage }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <!--  looking Input -->
+	  <div class="form-group">
+        <label for=" looking">Looking for</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) || (! LookingValid && form.controls. looking.dirty), 'has-success': !form.controls. looking.errors &&  LookingValid}">
+          <label>
+            <input type="radio" name=" flat" class="form-control" autocomplete="off" placeholder="* flat" formControlName=" flat"   />Flat
+          </label>
+          <label>
+            <input type="radio" name=" pg" class="form-control" autocomplete="off" placeholder="* pg" formControlName=" pg"   />PG
+          </label>
+          
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  Rent Input -->
+      <div class="form-group">
+        <label for=" rent">Rent</label>
+        <div [ngClass]="{'has-error': (form.controls. rent.errors && form.controls. rent.dirty) || (! RentValid && form.controls. rent.dirty), 'has-success': !form.controls. rent.errors &&  RentValid}">
+          <label>
+            <input type="range" min="1" max="100000" name=" rent" class="form-control" autocomplete="off" placeholder="* Rent" formControlName=" rent"   /> OR
+          </label>
+          <label>
+            <input type="number" name=" rent" class="form-control" autocomplete="off" placeholder="* Rent" formControlName=" rent"   /> 
+          </label>
+          
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. rent.errors?.required && form.controls. rent.dirty">This field is required</li>
+            <li *ngIf=" rentMessage">{{  rentMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  looking Input -->
+      <div class="form-group">
+        <label for=" looking">Looking for</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) || (! LookingValid && form.controls. looking.dirty), 'has-success': !form.controls. looking.errors &&  LookingValid}">
+          <label>
+            <input type="radio" name=" ac" class="form-control" autocomplete="off" placeholder="* ac" formControlName=" ac"   />AC
+          </label>
+          <label>
+            <input type="radio" name=" nonac" class="form-control" autocomplete="off" placeholder="* nonac" formControlName=" nonac"   />Non AC
+          </label>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  looking Input -->
+      <div class="form-group">
+        <label for=" looking">Looking for near Gymming Area</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) || (! LocationValid && form.controls. looking.dirty), 'has-success': !form.controls. looking.errors &&  Looking}">
+          <label>
+            <input type="radio" name=" yes" class="form-control" autocomplete="off" placeholder="* Yes" formControlName=" yes"   />Yes
+          </label>
+          <label>
+            <input type="radio" name=" no" class="form-control" autocomplete="off" placeholder="* No" formControlName=" no"   />No
+          </label>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  looking Input -->
+      <div class="form-group">
+        <label for=" looking">Looking for near Swimming Pool</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) || (! LookingValid && form.controls. looking.dirty), 'has-success': !form.controls. looking.errors &&  LookingValid}">
+          <label>
+            <input type="radio" name=" yes" class="form-control" autocomplete="off" placeholder="* Yes" formControlName=" yes"   />Yes
+          </label>
+          <label>
+            <input type="radio" name=" no" class="form-control" autocomplete="off" placeholder="* No" formControlName=" no"   />No
+          </label>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  looking Playing Ground Area Input -->
+      <div class="form-group">
+        <label for=" looking">Looking for near Playing Ground Area</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) || (! LookingValid && form.controls. looking.dirty), 'has-success': !form.controls. looking.errors &&  LookingValid}">
+          <label>
+            <input type="radio" name=" yes" class="form-control" autocomplete="off" placeholder="* Yes" formControlName=" yes"  />Yes
+          </label>
+          <label>
+            <input type="radio" name=" no" class="form-control" autocomplete="off" placeholder="* No" formControlName=" no"  />No
+          </label>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  looking close to Hospital Area Input -->
+      <div class="form-group">
+        <label for=" looking">Looking for near Playing Ground Area</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) || (! LookingValid && form.controls. looking.dirty), 'has-success': !form.controls. looking.errors &&  LookingValid}">
+          <label>
+            <input type="radio" name=" yes" class="form-control" autocomplete="off" placeholder="* Yes" formControlName=" yes"  />Yes
+          </label>
+          <label>
+            <input type="radio" name=" no" class="form-control" autocomplete="off" placeholder="* No" formControlName=" no"  />No
+          </label>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  looking SuperMarket Area Input -->
+      <div class="form-group">
+        <label for=" looking">Looking for near SuperMarket Area</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) , 'has-success': !form.controls. looking.errors }">
+          <label>
+            <input type="radio" name=" yes" class="form-control" autocomplete="off" placeholder="* Yes" formControlName=" yes"   />Yes
+          <label>
+            <input type="radio" name=" no" class="form-control" autocomplete="off" placeholder="* No" formControlName=" no"   />No
+          </label>
+          <!-- Validation -->          </label>
+
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  looking Main Road Input -->
+      <div class="form-group">
+        <label for=" looking">Looking for near Main Road</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) || (! LookingValid && form.controls. looking.dirty), 'has-success': !form.controls. looking.errors &&  LookingValid}">
+          <label>
+            <input type="radio" name=" yes" class="form-control" autocomplete="off" placeholder="* Yes" formControlName=" yes"   />Yes
+          </label>
+          <label>
+            <input type="radio" name=" no" class="form-control" autocomplete="off" placeholder="* No" formControlName=" no"   />No
+          </label>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  looking Temple Input -->
+      <div class="form-group">
+        <label for=" looking">Looking for near Temple</label>
+        <div [ngClass]="{'has-error': (form.controls. looking.errors && form.controls. looking.dirty) || (! LookingValid && form.controls. looking.dirty), 'has-success': !form.controls. looking.errors &&  LookingValid}">
+          <label>
+            <input type="radio" name=" yes" class="form-control" autocomplete="off" placeholder="* Yes" formControlName=" yes"  />Yes
+          </label>
+          <label>
+            <input type="radio" name=" no" class="form-control" autocomplete="off" placeholder="* No" formControlName=" no"   />No
+          </label>
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. looking.errors?.required && form.controls. looking.dirty">This field is required</li>
+            <li *ngIf=" lookingMessage">{{  lookingMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!--  Address Input -->
+      <div class="form-group">
+        <label for=" address">Address</label>
+        <div [ngClass]="{'has-error': (form.controls. address.errors && form.controls. address.dirty) || (! AddressValid && form.controls. address.dirty), 'has-success': !form.controls. address.errors &&  AddressValid}">
+          <textarea rows="4" cols="40"></textarea>
+  
+          <!-- Validation -->
+          <ul class="help-block">
+            <li *ngIf="form.controls. address.errors?.required && form.controls. address.dirty">This field is required</li>
+            <li *ngIf=" addressMessage">{{  addressMessage }}</li>
+          </ul>
+        </div>
+      </div>
+  
+    <!-- Submit Input -->
+    <input [disabled]="!form.valid || processing" type="submit" class="btn btn-primary" value="Submit" />
+  </form>
